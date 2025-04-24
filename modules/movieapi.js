@@ -39,18 +39,14 @@ async function getTop10PopularMovies() {
     }
 }
 async function getSearchResult(searchCategory, searchInput, searchSorting) {
-  
     const searchUrl = `https://api.themoviedb.org/3/search/${searchCategory}?query=${encodeURIComponent(searchInput)}&language=en-US&page=1`;
-
     try{
       const response = await fetch(searchUrl, options);
       if(!response.ok) {
         throw new Error('Sorry, we couldnt reach the movie database. Please try again later.');
     }
       const searchObj = await response.json();
-
-      /* let results = searchObj.results; */
-        console.log(searchObj);
+        // console.log(searchObj);
       return searchObj.results;
   } catch (error) {
       throw error;
@@ -58,7 +54,6 @@ async function getSearchResult(searchCategory, searchInput, searchSorting) {
 }
 async function getMovieById(id) {
     const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
-  
     try {
       const response = await fetch(url, options);
       if (!response.ok) throw new Error('Failed to fetch movie details');
@@ -67,7 +62,6 @@ async function getMovieById(id) {
       throw error;
     }
   }
-
   async function getMovieTrailers(id) {
     const url = `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
     try {
@@ -79,7 +73,6 @@ async function getMovieById(id) {
       throw error;
     }
   }
-  
   async function getMovieCredits(id) {
     const url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
     try {

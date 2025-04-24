@@ -34,9 +34,6 @@ window.addEventListener('scroll', () => {
         headerLinkBar.style.color = 'var(--mmdbBlack)';
     }
 });
-
-
-// Top 10 Rated Movies
 top10RatedMoviesEl.addEventListener('click', event => {
     event.preventDefault();
     top10RatedMoviesEl.classList.add('active');
@@ -45,33 +42,24 @@ top10RatedMoviesEl.addEventListener('click', event => {
     .then(renderTop10Movies)
     .catch(showError);
 });
-// Top 10 Popular Movies
 top10PopularMoviesEl.addEventListener('click', event => {
     event.preventDefault();
     top10PopularMoviesEl.classList.add('active');
     top10RatedMoviesEl.classList.remove('active');
     getTop10PopularMovies()
     .then(renderTop10Movies)
-    // .catch(err => console.error(err));
     .catch(showError);
 });
-
-// Searchlink
 searchLink.addEventListener('click', event => {
     event.preventDefault();
     top10RatedMoviesEl.classList.remove('active');
     top10RatedMoviesEl.classList.remove('active');
     sortingSelectEl.selectedIndex = 0;
-
     renderSearchBar();
 });
-
-// Search
+// Sort by..-button to default and checking if movie or person so relevant sorting option is visible
 function resetSortAndToggleOptions() {
-    // Reset select to default
     sortingSelectEl.selectedIndex = 0;
-  
-    // when "person" is selected, no movie-only sorting options
     const movieOnlyOptions = sortingSelectEl.querySelectorAll('#movie-only');
     movieOnlyOptions.forEach(opt => {
       const isMovie = movieCategoryBtn.checked;
@@ -79,8 +67,6 @@ function resetSortAndToggleOptions() {
       opt.hidden = !isMovie;
     });
   }
-  
-  // 
   movieCategoryBtn.addEventListener('change', resetSortAndToggleOptions);
   personCategoryBtn.addEventListener('change', resetSortAndToggleOptions);
     
@@ -96,11 +82,11 @@ searchForm.addEventListener('submit', event => {
     const searchSorting = sortingSelectEl.value;
     const searchSortingText = sortingSelectEl.options[sortingSelectEl.selectedIndex].text;
     
-    getSearchResult(searchCategory, searchInput) // fetch once, no sorting here
+    getSearchResult(searchCategory, searchInput)
     .then(results => {
-        searchResults = results; // save the results globally
+        searchResults = results;
         lastCategory = searchCategory;
-        const sortedResults = sortResults(searchResults, searchSorting, searchCategory); // sort locally
+        const sortedResults = sortResults(searchResults, searchSorting, searchCategory);
         renderSearchResult(sortedResults, searchCategory, searchSortingText);
     })
     .catch(showError);
@@ -162,6 +148,7 @@ function sortResults(results, searchSorting, searchCategory) {
 
     return sorted;
 }
+// Makes movieCards and movies in PersonCard known-from-list clickable, then renders the MoviePage
 document.body.addEventListener('click', async event => {
     const clickable = event.target.closest('.clickable-card');
     if (!clickable) return;

@@ -15,7 +15,7 @@ export class MoviePage extends MovieCard {
         moviePage.classList.add('moviePage');
 
         const imgEl = document.createElement('img');
-        imgEl.src = 'https://image.tmdb.org/t/p/w780' + this.backdropPath;
+        imgEl.src = 'https://image.tmdb.org/t/p/original' + this.backdropPath;
         imgEl.alt = `poster for ${this.title} was not found`;
 
         const titleEl = document.createElement('h2');
@@ -39,35 +39,48 @@ export class MoviePage extends MovieCard {
             const trailerEl = document.createElement('div');
             trailerEl.innerHTML = `
                 <h3>Trailer</h3>
-                <iframe width="560" height="315"
-                src="https://www.youtube.com/embed/${this.trailer.key}"
-                frameborder="0" allowfullscreen></iframe>`;
+                <div class="videoWrapper">
+                    <iframe src="https://www.youtube.com/embed/${this.trailer.key}"
+                        frameborder="0" allowfullscreen>
+                    </iframe>
+                </div>`;
                 moviePage.append(trailerEl);
         }
-
         if (this.cast.length) {
+            console.log(this.cast);
             const castEl = document.createElement('div');
             castEl.innerHTML = '<h3>Cast</h3>';
             this.cast.slice(0, 5).forEach(actor => {
                 const actorEl = document.createElement('p');
-                actorEl.innerText = `${actor.name} as ${actor.character}`;
+                if (actor.profile_path) {
+                    const actorImg = document.createElement('img');
+                    actorImg.src = `https://image.tmdb.org/t/p/w92${actor.profile_path}`;
+                    /* actorImg.alt = actor.name; */
+                    actorEl.appendChild(actorImg);
+                }
+                actorEl.innerHTML += `${actor.name} as ${actor.character}`;
                 castEl.appendChild(actorEl);
             });
             moviePage.append(castEl);
         }
-
+        
         if (this.crew.length) {
             const crewEl = document.createElement('div');
             crewEl.innerHTML = '<h3>Crew</h3>';
             const director = this.crew.find(person => person.job === 'Director');
             if (director) {
                 const directorEl = document.createElement('p');
-                directorEl.innerText = `Director: ${director.name}`;
+                if (director.profile_path) {
+                    const directorImg = document.createElement('img');
+                    directorImg.src = `https://image.tmdb.org/t/p/w92${director.profile_path}`;
+                   /*  directorImg.alt = director.name; */
+                    directorEl.appendChild(directorImg);
+                }
+                directorEl.innerHTML += `Director: ${director.name}`;
                 crewEl.appendChild(directorEl);
             }
             moviePage.append(crewEl);
         }
-
         return moviePage;
     }
 }

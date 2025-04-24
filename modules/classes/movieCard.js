@@ -1,21 +1,15 @@
-// import { renderMoviePage } from "../render.js";
-
 export class MovieCard {
     constructor(movie, options = {}) {
       this.id = movie.id;
       this.title = movie.title;
       this.releaseDate = movie.release_date;
       this.posterPath = movie.poster_path;
-      this.backdropPath = movie.backdrop_path;
       this.overview = movie.overview;
       this.voteAverage = movie.vote_average;
       this.popularity = movie.popularity;
       this.index = options.index;
       this.showDescription = options.showDescription ?? true;
       this.detailed = options.detailed ?? false;
-      this.trailer = options.trailer;
-      this.cast = options.cast ?? [];
-      this.crew = options.crew ?? [];
     }
 
     render() {
@@ -31,7 +25,7 @@ export class MovieCard {
   
       const imgEl = document.createElement('img');
       imgEl.src = this.posterPath
-      ? 'https://image.tmdb.org/t/p/w500' + this.posterPath
+      ? 'https://image.tmdb.org/t/p/original' + this.posterPath
       : 'https://via.placeholder.com/500x750?text=No+Image';
       imgEl.alt = `poster for ${this.title} was not found`;
     

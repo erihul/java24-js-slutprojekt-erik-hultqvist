@@ -36,7 +36,6 @@ function showError(message) {
         hideElements(errorEl);
     }, 5000);
 }
-// Namnge tydligare  beskrivande
 function renderTop10Movies(movies){
     clearMainContent();
     hideElements(searchBarEl, sortingSelectEl);
@@ -85,27 +84,23 @@ function renderSearchResult(movies, searchCategory, searchSortingText) {
         }
     scrollToTop();
 }
-
 async function renderMoviePage (movieId) {
     resetActiveTabs(top10RatedMoviesEl, top10PopularMoviesEl);
     clearMainContent();
     hideElements(searchBarEl, sortingSelectEl);
-
     try {
         const movie = await getMovieById(movieId);
         const trailers = await getMovieTrailers(movieId);
         const credits = await getMovieCredits(movieId);
-    
         const trailer = trailers.find(v => v.type === 'Trailer' && v.site === 'YouTube');
         console.log(trailer);
-    
+
         const moviePage = new MoviePage(movie, {
           trailer,
           cast: credits.cast,
           crew: credits.crew
         });
         movieContent.append(moviePage.render());
-    
       } catch (err) {
         console.error(err);
         showError('Could not load full movie info.');

@@ -1,5 +1,3 @@
-// import { renderMoviePage } from "../render.js";
-
 export class PersonCard {
     constructor(person) {
       this.name = person.name;
@@ -37,7 +35,7 @@ export class PersonCard {
             if (item.media_type === 'movie' && item.id) {
                 knownMediaEl.classList.add('known-media');
                 knownMediaEl.style.cursor = 'pointer';
-                
+
                 knownMediaEl.classList.add('clickable-card');
                 knownMediaEl.dataset.id = item.id;
                 knownMediaEl.dataset.type = 'movie';
