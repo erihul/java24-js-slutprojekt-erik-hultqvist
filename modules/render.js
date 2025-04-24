@@ -37,14 +37,14 @@ function showError(message) {
     }, 5000);
 }
 // Namnge tydligare  beskrivande
-function renderTop10Movies(movieUrls){
+function renderTop10Movies(movies){
     clearMainContent();
     hideElements(searchBarEl, sortingSelectEl);
     
-    movieUrls.slice(0, 10).forEach((movie, index) => {
+    movies.slice(0, 10).forEach((movie, index) => {
         const card = new MovieCard(movie, { index, showDescription: false });
         listContent.append(card.render());
-        console.log(movie);
+        /* console.log(movie); */
       });
 
     scrollToTop();
@@ -58,11 +58,11 @@ function renderSearchBar() {
     resetActiveTabs(top10RatedMoviesEl, top10PopularMoviesEl);
 }
 
-function renderSearchResult(searchUrls, searchCategory, searchSortingText) {
+function renderSearchResult(movies, searchCategory, searchSortingText) {
     clearMainContent();
     
     const searchTitle = document.createElement('p');
-    searchTitle.innerText = `${searchUrls.length} searchresults in ${searchCategory}`;
+    searchTitle.innerText = `${movies.length} searchresults in ${searchCategory}`;
     searchInfo.append(searchTitle);
     if (searchSortingText != 'Sort by...') {
         const searchSorted = document.createElement('p');
@@ -71,12 +71,12 @@ function renderSearchResult(searchUrls, searchCategory, searchSortingText) {
     }
     
     if (searchCategory == 'movie'){
-        searchUrls.forEach(movie => {
+        movies.forEach(movie => {
             const card = new MovieCard(movie);
             listContent.append(card.render());
         });
     } else if (searchCategory == 'person'){
-        searchUrls.forEach((person) => {
+        movies.forEach((person) => {
             const card = new PersonCard(person);
             const cardElement = card.render();
                 cardElement.classList.add('no-hover');
@@ -97,13 +97,13 @@ async function renderMoviePage (movieId) {
         const credits = await getMovieCredits(movieId);
     
         const trailer = trailers.find(v => v.type === 'Trailer' && v.site === 'YouTube');
+        console.log(trailer);
     
         const moviePage = new MoviePage(movie, {
           trailer,
           cast: credits.cast,
           crew: credits.crew
         });
-        console.log(moviePage);
         movieContent.append(moviePage.render());
     
       } catch (err) {

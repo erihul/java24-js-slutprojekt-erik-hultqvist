@@ -18,7 +18,7 @@ export class MoviePage extends MovieCard {
         imgEl.src = 'https://image.tmdb.org/t/p/w780' + this.backdropPath;
         imgEl.alt = `poster for ${this.title} was not found`;
 
-        const titleEl = document.createElement('h3');
+        const titleEl = document.createElement('h2');
         titleEl.innerText = this.title;
 
         const releaseEl = document.createElement('p');
