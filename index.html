@@ -5,11 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="#" type="image/x-icon">
-    <script src="./js/script.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Font: Anton -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <!-- Font: Gabarito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@900&display=swap" rel="stylesheet">
+    <!-- Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="./main.js" type="module"></script>
     <title>Slutprojekt - the Movie DataBase</title>
 </head>
 <body>
-    <h1 >MMDB - MyMovieDataBase</h1>
-    
+    <header>
+        <div class="headerElement">
+            <div class="headerLeft" id="headerLeft">MMDB</div>
+            <div class="headerCenter" id="headerCenter">MyMovieDataBase</div>
+        </div>
+    </header>
+    <div class="headerContent" id="headerContent">
+        <div class="top10Element">
+            <div  class="ratedMovies" id="ratedMovies">
+                Top10 Rated Movies
+            </div>
+            <div  class="popularMovies" id="popularMovies">
+                Top10 Popular Movies
+            </div>
+        </div>
+        <div  class="searchLink" id="searchLink">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="31" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+        </div>
+    </div>
+    <div class="searchElement hidden" id="searchElement">
+        <form action="" method="GET">
+            <div class="firstRowForm">
+                <input type="text" name="query" placeholder="Search..." />
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-search" viewBox="0 0 17 17"> <!-- viewBox="-1.8 -4 19 19" -->
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="secondRowForm">
+                <input type="radio" class="btn-check" name="category" id="movie" value="movie" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="movie">Movie</label>
+                <input type="radio" class="btn-check" name="category" id="person" value="person" autocomplete="off">
+                <label class="btn btn-outline-success" for="person">Person</label>
+            </div>
+            <div class="thirdRowForm">
+                <select name="sort" class="sortSelect" id="sortSelect">
+                    <option value="" disabled selected>Sort by...</option>
+                    <option value="a-z">Alphabetical A-Z</option>
+                    <option value="z-a">Alphabetical Z-A</option>
+                    <option value="popularity.desc">Popularity desc.</option>
+                    <option value="popularity.asc">Popularity asc.</option>
+                    <option value="vote_average.desc" id="movie-only">Average Score desc.</option>
+                    <option value="vote_average.asc" id="movie-only">Average Score asc.</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="errorMessage hidden" id="errorMessage"></div>
+    <div class="contentWrapper" id="contentWrapper">
+        <div class="searchInfo" id="searchInfo"></div>
+        <div class="listContent" id="listContent"></div>
+        <div class="movieContent" id="movieContent"></div>
+    </div>
 </body>
 </html>
+
+<!-- 
+----------------------------------------------------------------------
+- Felmeddelande
+
+- VG
+
+- Trailer
+
+- Clickbar film , med utökad information
+
+---------------------------------------
+Respons
+--------------------------------------
+
+ - namngivning av element/objekt...
+
+ - flytta eventlistener för clickbar film
+
+ - Class moviePage?
+
+-->
