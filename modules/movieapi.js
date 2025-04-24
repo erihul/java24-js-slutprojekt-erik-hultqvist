@@ -1,5 +1,4 @@
 // import { renderMoviePage } from "./render.js";
-
 const BAERER_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOTg2NjU1ODMzNTI3YTA3MTcyMDQ2OWY2MzBkOTQxMSIsIm5iZiI6MTc0NDcyNjIzMC4xODcsInN1YiI6IjY3ZmU2OGQ2N2MyOWFlNWJjM2Q5YTJkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zyt24rZTWcXMoN-UI0JSI-jOKRQHvrxtaUjshXO_C70';
 
 const options = {
@@ -10,20 +9,23 @@ const options = {
   }
 };
 
-async function getRatedMovies() {
-    const rateUrl = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-    try{
-        const response = await fetch(rateUrl, options);
-        if(!response.ok) {
-            throw new Error('Sorry, we couldnt reach the movie database. Please try again later.');
-        }
-        const movieObj = await response.json();
-        return movieObj.results;
-    } catch (error) {
-        throw error;
+async function getTop10RatedMovies() {
+  const rateUrl =
+    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+  try {
+    const response = await fetch(rateUrl, options);
+    if (!response.ok) {
+      throw new Error(
+        "Sorry, we couldnt reach the movie database. Please try again later."
+      );
     }
+    const movieObj = await response.json();
+    return movieObj.results;
+  } catch (error) {
+    throw error;
+  }
 }
-async function getPopularMovies() {
+async function getTop10PopularMovies() {
     const popUrl = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
     try{
         const response = await fetch(popUrl, options);
@@ -47,46 +49,8 @@ async function getSearchResult(searchCategory, searchInput, searchSorting) {
     }
       const searchObj = await response.json();
 
-      let results = searchObj.results;
-
-        if (searchSorting && searchCategory === 'movie') {
-            switch (searchSorting) {
-                case 'a-z':
-                    results.sort((a, b) => a.title.localeCompare(b.title));
-                    break;
-                case 'z-a':
-                    results.sort((a, b) => b.title.localeCompare(a.title));
-                    break;
-                case 'popularity.asc':
-                    results.sort((a, b) => a.popularity - b.popularity);
-                    break;
-                case 'popularity.desc':
-                    results.sort((a, b) => b.popularity - a.popularity);
-                    break;
-                case 'vote_average.desc':
-                    results.sort((a, b) => b.vote_average - a.vote_average);
-                    break;
-                case 'vote_average.asc':
-                    results.sort((a, b) => a.vote_average - b.vote_average);
-                    break;
-            }
-        } else if(searchSorting && searchCategory === 'person') {
-            switch (searchSorting) {
-              case 'a-z':
-                  results.sort((a, b) => a.name.localeCompare(b.name));
-                  break;
-              case 'z-a':
-                  results.sort((a, b) => b.name.localeCompare(a.name));
-                  break;
-              case 'popularity.asc':
-                  results.sort((a, b) => a.popularity - b.popularity);
-                  break;
-              case 'popularity.desc':
-                  results.sort((a, b) => b.popularity - a.popularity);
-                  break;
-            }
-        }
-
+      /* let results = searchObj.results; */
+        console.log(searchObj);
       return searchObj.results;
   } catch (error) {
       throw error;
@@ -128,19 +92,4 @@ async function getMovieById(id) {
     }
   }
 
-export {getPopularMovies, getRatedMovies, getSearchResult, getMovieById, getMovieTrailers, getMovieCredits};
-
-
-
-// Såhär kan du tänka
-// let movies = [];
-
-// addEventListener('submit', async ( )=>{
-//     movies = await getMovies()
-//     renderMoviePage(movies)
-// })
-
-// addEventListener('onChange', ()=>{
-//     const sortedMovies = sort(movies);
-//     renderMoviePage(sortedMovies)
-// })
+export {getTop10RatedMovies, getTop10PopularMovies, getSearchResult, getMovieById, getMovieTrailers, getMovieCredits};
