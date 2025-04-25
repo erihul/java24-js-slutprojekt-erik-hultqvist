@@ -1,4 +1,6 @@
-// import { renderMoviePage } from "./render.js";
+// MOVIEAPI.JS -- Handles all TMDB API requests: top-rated, popular, search, movie details, trailers, and credits.
+
+
 const BAERER_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOTg2NjU1ODMzNTI3YTA3MTcyMDQ2OWY2MzBkOTQxMSIsIm5iZiI6MTc0NDcyNjIzMC4xODcsInN1YiI6IjY3ZmU2OGQ2N2MyOWFlNWJjM2Q5YTJkMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zyt24rZTWcXMoN-UI0JSI-jOKRQHvrxtaUjshXO_C70';
 
 const options = {

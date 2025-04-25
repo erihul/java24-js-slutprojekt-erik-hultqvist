@@ -1,3 +1,7 @@
+// RENDER.JS -- Handles all DOM rendering for movies, search results, movie pages, and errors. 
+//              Includes helpers for showing/hiding/resetting views.
+
+
 import { MovieCard } from "./classes/movieCard.js";
 import { PersonCard } from "./classes/personCard.js";
 import { MoviePage } from "./classes/moviePage.js";

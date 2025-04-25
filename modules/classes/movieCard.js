@@ -1,3 +1,7 @@
+// MOVIECARD.JS -- Defines a MovieCard class to create and render movie summary cards (for both top10 lists and in search)
+//                 using OOP.
+
+
 export class MovieCard {
     constructor(movie, options = {}) {
       this.id = movie.id;

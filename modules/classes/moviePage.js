@@ -1,3 +1,6 @@
+// MOVIEPAGE.JS -- Extends MovieCard to render a detailed movie view with trailer, cast, and crew information.
+
+
 import { MovieCard } from "./movieCard.js";
 
 export class MoviePage extends MovieCard {

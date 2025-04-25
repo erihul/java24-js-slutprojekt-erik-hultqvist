@@ -1,3 +1,6 @@
+// PERSONCARD.JS  -- (OOP) Defines a PersonCard class to render a person's profile using OOP principles.
+
+
 export class PersonCard {
     constructor(person) {
       this.name = person.name;

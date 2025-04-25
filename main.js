@@ -1,3 +1,6 @@
+// MAIN.JS -- Sets up UI event listeners and controls search, sorting, and rendering of movies and persons.
+
+
 import { getTop10RatedMovies, getTop10PopularMovies, getSearchResult } from "./modules/movieapi.js";
 import { renderTop10Movies, renderSearchBar, renderSearchResult, showError, renderMoviePage } from "./modules/render.js";
 
