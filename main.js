@@ -1,4 +1,4 @@
-// MAIN.JS -- Sets up UI event listeners and controls search, sorting, and rendering of movies and persons.
+// MAIN.JS -- Sets up UI event listeners (and controls search, sorting, and rendering of movies and persons).
 
 
 import { getTop10RatedMovies, getTop10PopularMovies, getSearchResult } from "./modules/movieapi.js";
@@ -94,14 +94,14 @@ searchForm.addEventListener('submit', event => {
     })
     .catch(showError);
 });
-
+// When changing sort dropdown - Check If the category hasn't changed and there are results, Sort the existing results according to the 
+// selected sort method, Then re-render them with the new sort applied.
 sortingSelectEl.addEventListener('change', () => {
     const formData = new FormData(searchForm);
     const currentCategory = formData.get('category');
     const searchSorting = sortingSelectEl.value;
     const searchSortingText = sortingSelectEl.options[sortingSelectEl.selectedIndex].text;
 
-    // Don't sort if the category changed since last search
     if (currentCategory !== lastCategory || searchResults.length === 0) return;
 
     const sortedResults = sortResults(searchResults, searchSorting, currentCategory);

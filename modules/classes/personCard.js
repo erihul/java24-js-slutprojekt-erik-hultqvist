@@ -17,19 +17,21 @@ export class PersonCard {
         const imgEl = document.createElement('img');
         imgEl.src = this.profilePath
         ? 'https://image.tmdb.org/t/p/w500' + this.profilePath
-        : 'https://via.placeholder.com/500x750?text=No+Image';
-        imgEl.alt = `poster for ${this.name} was not found`;
+        : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
   
         const nameEl = document.createElement('h3');
         nameEl.innerText = this.name;
     
-        const popEl = document.createElement('p');
+        const popEl = document.createElement('h6');
         popEl.innerText = 'Popularity: ' + this.popularity;
     
-        const deptEl = document.createElement('p');
+        const deptEl = document.createElement('h6');
         deptEl.innerText = this.department;
     
         const knownMedia = document.createElement('div');
+        const knownMediaTitle = document.createElement('h5');
+        knownMediaTitle.innerText = 'Credits '
+        knownMedia.append(knownMediaTitle);
         this.knownFor.forEach((item) => {
             const knownMediaEl = document.createElement('p');
             const title = item.title || item.name;
@@ -47,7 +49,7 @@ export class PersonCard {
             knownMedia.append(knownMediaEl);
         });
     
-        card.append(imgEl, nameEl, popEl, deptEl, knownMedia);
+        card.append(imgEl, nameEl, deptEl, popEl, knownMedia);
         return card;
     }
   }

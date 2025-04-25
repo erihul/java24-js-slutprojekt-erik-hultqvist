@@ -30,13 +30,12 @@ export class MovieCard {
       const imgEl = document.createElement('img');
       imgEl.src = this.posterPath
       ? 'https://image.tmdb.org/t/p/original' + this.posterPath
-      : 'https://via.placeholder.com/500x750?text=No+Image';
-      imgEl.alt = `poster for ${this.title} was not found`;
+      : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
     
       const titleEl = document.createElement('h3');
       titleEl.innerText = this.title;
   
-      const releaseEl = document.createElement('p');
+      const releaseEl = document.createElement('h6');
       releaseEl.innerText = 'Release date: ' + this.releaseDate;
   
       card.append(imgEl, titleEl, releaseEl);
@@ -47,10 +46,10 @@ export class MovieCard {
         card.append(descriptionEl);
       }
       
-      const scoreEl = document.createElement('p');
+      const scoreEl = document.createElement('h6');
       scoreEl.innerText = 'User score: ' + this.voteAverage;
       
-      const popEl = document.createElement('p');    
+      const popEl = document.createElement('h6');    
       popEl.innerText = 'Popularity: ' + this.popularity;
   
       card.append(scoreEl, popEl);
